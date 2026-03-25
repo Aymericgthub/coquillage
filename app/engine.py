@@ -13,7 +13,7 @@ DB_PORT = os.getenv("DB_PORT", "3306")
 DB_DATABASE = os.getenv("DB_DATABASE")
 
 DATABASE_URL = (
-    f"mariadb+mariadbconnector://{DB_USER}:{DB_PASSWORD}"
+    f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}"
     f"@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 )
 
