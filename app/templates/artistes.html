@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des artistes</title>
+</head>
+<body>
+    <h1>Liste des artistes</h1>
+
+    <ul>
+        {% for artiste in artistes %}
+            <li>{{ artiste['prenom'] }} {{ artiste['nom'] }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
