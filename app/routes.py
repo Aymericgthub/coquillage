@@ -1,5 +1,7 @@
 import pymysql
 from flask import render_template, request
+from .engine import SessionLocal
+from .artiste import Artiste
 
 
 def register_routes(app):
@@ -33,6 +35,21 @@ def register_routes(app):
                         (f"%{query}%",)
                     )
                     artists = cursor.fetchall()
+
+        return render_template("artistes.html", artists=artists)
+
+    @app.route("/artistes-sqlalchemy", methods=["GET", "POST"])
+    def artistes_sqlalchemy():
+        artists = None
+        query = ""
+
+        if request.method == "POST":
+            query = request.form.get("query", "").strip()
+            db = SessionLocal()
+            try:
+                artists = db.query(Artiste).filter(Artiste.nom.like(f"%{query}%")).all()
+            finally:
+                db.close()
 
         return render_template("artistes.html", artists=artists)
 

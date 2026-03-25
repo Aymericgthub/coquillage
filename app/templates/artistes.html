@@ -50,7 +50,9 @@
                     {% if artists %}
 
                         {% for item in artists %}
-<li class="p-3 hover:bg-gray-50">{{ item }}</li>
+<li class="p-3 hover:bg-gray-50">
+    <strong>{% if item.nom is defined %}{{ item.nom }}{% elif item['nom'] is defined %}{{ item['nom'] }}{% else %}{{ item }}{% endif %}</strong>
+</li>
 
                         {% endfor %}
 
